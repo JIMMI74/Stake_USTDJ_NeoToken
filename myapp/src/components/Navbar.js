@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import {Link } from 'react-router-dom'
 import logo from '../logo.png'
 
 
@@ -28,13 +29,16 @@ const Navbar = (props) => {
             </a>
           </li>
           <li>
-            <a href="./about.html">about</a>
+          <li><Link to="/login">Login</Link></li>
           </li>
           <li>
-            <a href="./projects.html">projects</a>
+          <li><Link to="/logout">Logout</Link></li>
           </li>
           <li>
-            <a href="./contact.html">contact</a>
+          <li><Link to="/user">User</Link></li>
+          </li>
+          <li>
+          <li><Link to="/register">Register</Link></li>
           </li>
         </ul>
         <small>
