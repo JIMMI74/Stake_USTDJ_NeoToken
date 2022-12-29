@@ -52,28 +52,11 @@ const Navbar = (props) => {
               {/* le size sono in XS LG SX*/}
             </a>
           </li>
-          <li>
-            <a href="https://www.youtube.com">
-              <i className="fab fa-youtube"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.twitter.com">
-              <i className="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </li>
         </ul>
       </div>
     </nav>
   );
 };
-
-
 
 
 export default Navbar;

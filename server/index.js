@@ -59,6 +59,8 @@ main() */
 app.use(bodyParser({extended:true}))
 //app.use(bodyParser.json())
 app.use(cors({credentials:true,origin:/./}))
+
+app.options('*',cors({credentials:true,origin:/./,methods:['GET','POST','PUT','DELETE','OPTIONS'],allowedHeaders:['Content-Type','Authorization','Origin','X-Requested-With','Accept']}))
 app.use(cookieParser)
 
 
@@ -93,10 +95,6 @@ app.post('/register',async(req,res)=>{
         res.status(300).send("utente gia registrato")
         return
     }
-
-
-
-
 
 
 
@@ -140,24 +138,30 @@ app.post('/user',authToken,(req,res)=>{
     const {email} = req.userData
     const {params,body,query} = req
     const {wallet} = body
-    const origin = req.headers.origin
-    console.log({body,origin})
+
+    const regex = /^0x[a-fA-F0-9]{40}$/g
+    if (wallet === undefined || !wallet.match(regex)){
+        res.status(401).send('address sbagliato')
+        return
+    }  
     userRegister.findOne({_id:email}).then((user)=>{
         console.log('tovato')
         userRegister.updateOne({_id:email},{$set:{wallet}}).then((e)=>{
-            console.log('update con sucesso',e)
-            res.redirect(origin+body.callbackOK)})
+            console.log('update con success',e)
+            res.status(200).send('wallet aggiornato con sucesso')
+        })
         .catch((e)=>{
             console.log('errore',e)
-            res.status(401).send('errore'+JSON.stringify(e))})
+            res.status(401).send('errore:'+JSON.stringify(e))})
     })
     .catch((e)=>{
-        console.log('non trovato',e)
+        console.log('not find',e)
     })
 })
 
 async function authToken(req, res, next) {
     console.log('auth')
+    if(!req.parsCookie) return res.status(401).send('please log in first')
     const token = req.parsCookie['jwtoken']
     console.log({token})
     if (token == null) return res.status(401).send('non sei loggato') // se l'utente non e loggato con nessun account lo m
@@ -197,6 +201,7 @@ function generateRefreshToken(user) {
 
 function cookieParser(req, res, next) {
     const cookies = req?.headers?.cookie
+    console.log({heder:req.headers})
     if (!cookies) { next(); return; }
     const listCookies = cookies.split('; ')
     req.parsCookie = {}
@@ -204,6 +209,7 @@ function cookieParser(req, res, next) {
         const [key, ...value] = cookie.split('=')
         req.parsCookie[key] = value.join('=')
     })
+    
     return next()
 }
 

@@ -166,7 +166,7 @@
   }
   .word{
     display: inline;
-    align-self: flex-center;
+    align-self: center;
     width: 370px;
    height: 150;
    border:solid black;
