@@ -16,11 +16,6 @@ contract USDTJ is ERC20 {
         require(msg.sender == owner, "Only the owner call function");
         _;
     }
-
-   /*  function selfTransfer(address from, address to, uint256 amount) public returns (bool) {
-        _transfer(from, to, amount);
-        return true;
-    } */
 }
 
 

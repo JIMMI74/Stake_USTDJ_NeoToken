@@ -7,8 +7,8 @@ contract NeoToken is ERC20 {
     address public owner;
 
     constructor() ERC20("NeoToken", "NKT") {
-        owner = msg.sender; // ownr ok deploy pero' non deve per forza avere l riservw dei token del contratto.
-        _mint(address(this), 2000000000 * 10**decimals()); // minto il contratto stesso
+        owner = msg.sender; // owner ok deployed.Non per forza deve avere l riserva dei token del contratto.
+        _mint(address(this), 2000000000 * 10**decimals()); // mint il contratto stesso
         _mint(owner,20000000 * 10**decimals());
     }
 
@@ -16,10 +16,5 @@ contract NeoToken is ERC20 {
         require(msg.sender == owner, "Only the owner call function");
         _;
     }
-
-   /*  function selfTransfer(address from, address to, uint256 amount) public virtual returns (bool) {
-        _transfer(from, to, amount);
-        return true;
-    } */
 
 }
