@@ -11,7 +11,7 @@ REFRESH_TOKEN_SECRET="8e5a3dfb01220c77a0255676f4561a01c8b3c62240c8b9956a05bb72bb
 
 //console.log(process.env.MONGO_URI);
 // require('crypto').randomBytes(64).toString('hex')
-const privateKey = "mongodb+srv://jimmy:Tuttidentro01@jimmy.innukjq.mongodb.net/test"
+const privateKey = "mongodb+srv://UTENTE:PASSWORD@jimmy.innukjq.mongodb.net/test"
 //console.log({privateKey});
 //const client = new MongoClient(process.env.MONGO_URI)
 
