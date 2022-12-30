@@ -49,7 +49,7 @@ const Home = () => {
       const { from, amount } = dati.returnValues;
       if (from === account)
         NotificationManager.success(
-          "Complice il tuo staking hai ricevuto " +
+          "Complimenti !! per il tuo staking hai ricevuto " +
             amount +
             " USTDJ. BN: " +
             blockNumber
@@ -67,7 +67,7 @@ const Home = () => {
         const { from, amount, reward } = dati.returnValues;
         if (from === account)
           NotificationManager.success(
-            "Complice il tuo staking hai ricevuto " +
+            "Complimenti!! per il tuo staking hai ricevuto " +
               amount +
               " piu un bonus di " +
               reward +
@@ -76,7 +76,7 @@ const Home = () => {
           );
         else
           NotificationManager.info(
-            "Qalcuno ha unStekato " +
+            "Qualcuno ha unStake " +
               amount +
               " piu un bonus di " +
               reward +
