@@ -1,6 +1,34 @@
-Install Truffle;
-Install Nodejs;
-Install Npm;
+# INSTALL
+Ganache v7.5.0
+Solidity - 0.8.0 (solc-js)
+Node v18.12.0
+Web3.js v1.7.4
+
+# DEPLOY con Ganache
+npm i e verifica/copia i pacchetti presenti in package.Json
+Truffle compile
+Truffle migrate --reset
+
+# Cartella Staking 
+crea un file .ENV e passa la chivae privata di Ganache
+Puo inserire anche le chiavi di Alchemy, Infura se desideri fare un Deploy con uno di questi.
+ed inserire anche l'Etherschan API kEY
+
+# Downaload Metamask e impostazioni
+aggiungi nuova rete Test 7545 (Ganache)
+importa l'account [1] di Ganache 
+
+# MONGODB ATLAS
+Downaload MONGODB Atlas
+
+# Cartella Server
+npm i e verifica/copia i pacchetti presenti in package.Json
+crea file .ENV (MONGO_URI , TOKEN_AUTH) ed inserisci la PSW di Mongo tipo:
+mongodb+srv://UTENTE:PASSWORD@jimmy.innukjq.mongodb.net/test
+(n.b io l'ho dovuta inserire nel code per operativita')
+Puoi anche iserire la psw nel code Serever/Index.js
+
+# NPM RUN START
 
 # Getting Started with Create React App
 
