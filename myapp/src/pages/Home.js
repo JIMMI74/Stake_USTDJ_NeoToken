@@ -280,7 +280,9 @@ const Home = () => {
   return (
     <div className="main">
       <Navbar account={account} balance={0} />
+      
       <div className="container">
+      <h2>go to register and enter the address of your wallet to get more offers</h2>
         <div className="color-box">
           <h1 className="stake">
             <strong>Staking</strong>
@@ -291,7 +293,7 @@ const Home = () => {
       <div className="insert">
         <span>
           {" "}
-          <h2>stake an amount of USDTJ</h2>
+          <h2>Stake an amount of USDTJ</h2>
           <input
             type="number"
             placeholder="0"
@@ -300,20 +302,21 @@ const Home = () => {
             onChange={(e) => setAmountToStake(e.target.value)}
           />{" "}
         </span>
-        <button
+        <div className="DivStake">
+        <button className="btnStake"
         onClick={() => {
           stake();
-        }}
-      >
-        Stake
-      </button>
-      <button
+        }}            
+      > Stake</button></div>
+
+      <div className="DivStake">
+      <button className="btnStake"
         onClick={() => {
           unStake();
         }}
-      >
-        Un-Stake
+      >Un-Stake
       </button>
+      </div>
       </div>
       {/* {logo}<a href="paginaperInserimentoDati">Registrati</a> */}
 
@@ -346,20 +349,6 @@ const Home = () => {
         </h3>
         </div>
       </div>
-      <button
-        onClick={() => {
-          stake();
-        }}
-      >
-        Stake
-      </button>
-      <button
-        onClick={() => {
-          unStake();
-        }}
-      >
-        Un-Stake
-      </button>
       <div
         className="load"
         hidden={!loading}
