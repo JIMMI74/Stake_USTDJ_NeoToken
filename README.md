@@ -1,10 +1,10 @@
-# INSTALL
+# Install
 Ganache v7.5.0,
 Solidity - 0.8.0 (solc-js),
 Node v18.12.0,
 Web3.js v1.7.4,
 
-# DEPLOY con Ganache
+# Deploy con Ganache
 npm i e verifica/copia i pacchetti presenti in package.Json,
 Truffle compile,
 Truffle migrate --reset,
