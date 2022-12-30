@@ -9,11 +9,11 @@ const TOKEN_AUTH =
   "eda5281d3f5416b8c23800147ef407441d87eb0bd9b645b5892cea909c29b5e659ec6f83beb79fc8dc2a929cb438b82220e85d5fc5ce6a1120dd7f5f76b1d13a";
 REFRESH_TOKEN_SECRET =
   "8e5a3dfb01220c77a0255676f4561a01c8b3c62240c8b9956a05bb72bb75c20abe52fa92eb3acfdfeefa9c957e5b30e83bcbcaa6aa71685192ec36c7ae6e2941";
-  //mongodb+srv://JIMMI74:Tuttidentro01@jimmy.innukjq.mongodb.net/test
+  //mongodb+srv://UTENTE:PASSWORD@jimmy.innukjq.mongodb.net/test
 //console.log(process.env.MONGO_URI);
 // require('crypto').randomBytes(64).toString('hex')
 const privateKey =
-  "mongodb+srv://JIMMI74:Tuttidentro01@jimmy.innukjq.mongodb.net/test";
+  "mongodb+srv://UTENTE:PASSWORD@jimmy.innukjq.mongodb.net/test";
 //console.log({privateKey});
 //const client = new MongoClient(process.env.MONGO_URI)
 
