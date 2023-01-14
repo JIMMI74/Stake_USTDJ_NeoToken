@@ -39,43 +39,28 @@ contract Intermediary {
         usdtj = _usdtj;
         owner = msg.sender;
     }
-/* 
-    function approveToken(uint256 amount) public payable returns(bool){
-        // si approva le transazioni da intemediary a msg.sender
-        usdtj.approve(msg.sender,amount);
-        neoToken.approve(msg.sender,amount);
-        return true;
-    } */
+
 
     function stake(uint256 _amount) public payable{
         require(_amount > 0, "amount cannot be 0");
         require(usdtj.balanceOf(msg.sender) >= _amount, "not enough tokens");
-
-         //prendo dalla persona ustdj  // prendi da msg.sender e trasferisci a address(this)
+            
+            // Method Safe from utils Library;
+        
         SafeERC20.safeIncreaseAllowance(usdtj, msg.sender, _amount);
-        //usdtj.approve(msg.sender, _amount);
-        // require(usdtj.allowance(address(this),msg.sender) >= _amount, "Ustdj: insufficient allowace. 1");
-        // require(usdtj.allowance(msg.sender,address(this)) >= _amount, "Ustdj: insufficient allowace. 2");
-        //SafeERC20.safeTransfer(usdtj, address(this), _amount);
-        // usdtj.transfer(address(this), _amount);// da msg.sender ad addrees(this) lo prendo dalla persona che ha cha richiesto;
+       
+        //from msg.sender to addrees(this)- I take it from the person who requested it;
         SafeERC20.safeTransferFrom(usdtj, msg.sender, address(this), _amount);
 
 
-        // usdtj.transferFrom(msg.sender, address(this), _amount);
-        // trasferisco da intermediary a neoToken
-        //SafeERC20.safeApprove(neoToken, msg.sender, _amount);
-
-        // neoToken.approve(msg.sender, _amount);// neotoken.approve ha come msg.sender l'address di intermediary e gli passo il chiamante;
-        //test di verifica su allowance
-        //require(neoToken.allowance(address(this),msg.sender) >= _amount, "NeoToken: insufficient allowace. 1");
-
-        //require(neoToken.allowance(msg.sender,address(this)) >= _amount, "NeoToken: insufficient allowace. 2");
+        
+      
         SafeERC20.safeTransfer(neoToken, msg.sender, _amount);
-        //neoToken.transfer(msg.sender, _amount);
+   
+     
 
-        //da intermediary a msg.sender//n.b qnd si usa trasferfrom bisogna fare l'approvazione dell'allowance
-
-        // aggiungo in staking alla quantita precedente
+        // I add in staking to the previous amount
+        
         depositStakingBalance[msg.sender] += _amount;
 
         if (!staked[msg.sender]) {
@@ -89,29 +74,29 @@ contract Intermediary {
 
     function unstake() public {
         uint256 balance = depositStakingBalance[msg.sender];
-         // Amount deve essere > 0
+        
+         //Amount must be > 0
         require(balance > 0, "staking balance cannot be less than zero");
-            //
-         // dal intermediary  sposto  verso la persona
-         // allowance[owner][spender] = amount;
-         // owner msg.sender
-         // spender = to msg.sender
+            
+       
+         
+         // spender = to msg.sender - from the intermediary to the user
         uint256 bonus = claim();
-        uint256 balance_bonus = balance + claim(); //usdtj
+        uint256 balance_bonus = balance + claim(); // =>usdtj
 
-        //SafeERC20.safeApprove(neoToken,msg.sender, balance); // msg.sender sara' inetermediary e gli passo il chiamante
+        // msg.sender will be inetermediary and I pass it the caller
         SafeERC20.safeTransferFrom(neoToken,msg.sender,address(this), balance);
-        // neoToken.transferFrom(msg.sender, address(this), balance);
+      
 
 
-        //SafeERC20.safeApprove(usdtj,msg.sender, balance_bonus); // msg.sender sara' inetrmediary e gli passo il chiamante
-        // da intermediary a sender
+       
+        // from intermediary to msg.sender
         SafeERC20.safeTransfer(usdtj,msg.sender,balance_bonus);
-        // usdtj.transfer(msg.sender, balance_bonus);
+      
 
-        // TO CHECK: SE LO SMART CONTRACT ( L'ADDERESS) NON HA L'ALLOWANCE PER GESTIRE QUEL BALANCE DI neoToken ALLORA FALLIRÀ
-        // trasferisco da neoToken a intermediary
-        // reset staking balance
+        
+        // trasfer neoToken to intermediary
+       
         depositStakingBalance[msg.sender] = 0;
         // Update Staking Status
         isStaking[msg.sender] = false;
