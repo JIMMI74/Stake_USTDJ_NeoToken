@@ -25,9 +25,9 @@ function Staked(){
 function UnStaked(){
   return IntermediaryContract.events.UnStaked()
 }
-function approveToken(address, amount) {
+/*function approveToken(address, amount) {
   return IntermediaryContract.methods.approveToken( amount).send({from: address,gas: 3000000})
-}
+}*/
 
 /*
 IntermediaryInterface.Staked(address,10)
@@ -53,5 +53,5 @@ async function totalSupply(){
   return result
 }
 
-const IntermediaryInterface = { stake, unstake, getStakingBalance, totalSupply, Staked, UnStaked, address, networkId, depositStakingBalance, approveToken,claim}
+const IntermediaryInterface = { stake, unstake, getStakingBalance, totalSupply, Staked, UnStaked, address, networkId, depositStakingBalance, /*approveToken,*/claim}
 export default  IntermediaryInterface;

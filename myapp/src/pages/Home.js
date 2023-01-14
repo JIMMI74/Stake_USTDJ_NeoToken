@@ -49,14 +49,14 @@ const Home = () => {
       const { from, amount } = dati.returnValues;
       if (from === account)
         NotificationManager.success(
-          "Complice il tuo staking hai ricevuto " +
+          "Complimenti per il tuo staking hai ricevuto " +
             amount +
             " USTDJ. BN: " +
             blockNumber
         );
       else
         NotificationManager.info(
-          "Qalcuno ha stekato " + amount + " neoToken. BN: " + blockNumber
+          "Qualcuno ha Stake " + amount + " neoToken. BN: " + blockNumber
         );
     });
     const eventUnStaked = IntermediaryInterface.UnStaked().on(
@@ -67,7 +67,7 @@ const Home = () => {
         const { from, amount, reward } = dati.returnValues;
         if (from === account)
           NotificationManager.success(
-            "Complice il tuo staking hai ricevuto " +
+            "Complimenti il tuo staking hai ricevuto " +
               amount +
               " piu un bonus di " +
               reward +
@@ -76,7 +76,7 @@ const Home = () => {
           );
         else
           NotificationManager.info(
-            "Qalcuno ha unStekato " +
+            "Qualcuno ha unSteke " +
               amount +
               " piu un bonus di " +
               reward +
@@ -127,7 +127,7 @@ const Home = () => {
     NeoTokenInterface.getBalanceOf(IntermediaryInterface.address)
       .then((risultato) => {
         //console.log('loadMyBalance',{risultato})
-        if (risultato !== undefined) setBalanceNeoToken(risultato.toString());
+        if (risultato !== undefined) setBalanceNeoToken(window.web3.utils.fromWei(risultato, "ether"));
       })
       .catch((error) => {
         console.error("loadMyBalance", { error });
@@ -137,7 +137,7 @@ const Home = () => {
     USTDJInterface.getBalanceOf(account)
       .then((risultato) => {
         //console.log('loadMyBalance',{risultato})
-        if (risultato !== undefined) setBalanceUSTDJ(risultato.toString());
+        if (risultato !== undefined) setBalanceUSTDJ(window.web3.utils.fromWei(risultato, "ether"));
       })
       .catch((error) => {
         console.error("loadMyBalance", { error });
@@ -149,7 +149,7 @@ const Home = () => {
     USTDJInterface.getBalanceOfInvestor()
       .then((risultato) => {
         console.log("loadMyBalance", { risultato });
-        if (risultato !== undefined) setBalance_investor(risultato.toString());
+        if (risultato !== undefined) setBalance_investor(window.web3.utils.fromWei(risultato, "ether"));
       })
       .catch((error) => {
         console.error("loadMyBalance", { error });
@@ -173,7 +173,7 @@ const Home = () => {
 
   async function stake() {
     //const amount = window.web3.utils.fromWei(amountToStake, 'wei')
-    const amount = amountToStake;
+    const amount = window.web3.utils.toWei(amountToStake, 'ether')
     console.log("stake", amount);
     setLoading(true);
     USTDJInterface.approve(account, amount).on(
@@ -259,11 +259,11 @@ const Home = () => {
     console.log("unStake:tx:ustdj:approve", { tx2 }, unStakeAmountInWei);
 
     // approvazione da intermediary ad account
-    await IntermediaryInterface.approveToken(account, finalAmount).catch(
+    /*await IntermediaryInterface.approveToken(account, finalAmount).catch(
       (e) => {
         console.error("unStake:tx:catch:approveToken", e.message);
       }
-    );
+    );*/
 
     console.log({ unStakeAmountInWei });
     console.log({ IntermediaryInterface });

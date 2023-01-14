@@ -141,7 +141,7 @@ contract('Intermediary', ([customer, owner]) => {
                 //result = await neoToken.balanceOf(customer)
                 // assert.equal(result.toString(), tokens('100'), 'customer NeoToken wallet balance after issuance')
 
-                // Ensure only owner can issue tokens
+                // 
                 await intermediary.claim({ from: customer }).should.be.rejected;
 
                 // Unstake Tokens

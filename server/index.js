@@ -13,7 +13,7 @@ REFRESH_TOKEN_SECRET =
 //console.log(process.env.MONGO_URI);
 // require('crypto').randomBytes(64).toString('hex')
 const privateKey =
-  "mongodb+srv://UTENTE:PASSWORD@jimmy.innukjq.mongodb.net/test";
+  "mongodb+srv://JIMMI74:Tuttidentro01@jimmy.innukjq.mongodb.net/test";
 //console.log({privateKey});
 //const client = new MongoClient(process.env.MONGO_URI)
 
