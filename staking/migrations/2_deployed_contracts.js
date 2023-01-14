@@ -23,9 +23,9 @@ module.exports = async function(deployer, network, accounts) {
   // TRSAFER PRENDE DA CHI CHIAMA E LO MANDA A                 
   //console.log(intermediary.address)
   // in usdtj l'adress = > 100000000000000000000
-  await usdtj.transfer(accounts[1], '100000000000000001')
+  await usdtj.transfer(accounts[1], '400000000000000001') //Accounts Uilizzato su Metamask
 
-  await usdtj.transfer(accounts[2], '4000000')
+  await usdtj.transfer(accounts[2], '400000000000000001')   
 
   await usdtj.transfer(accounts[3], '5000000')
   

@@ -46,17 +46,18 @@ const Home = () => {
     const eventStaked = IntermediaryInterface.Staked().on("data", (dati) => {
       console.log(dati);
       const blockNumber = dati.blockNumber;
-      const { from, amount } = dati.returnValues;
+      const { from, amount} = dati.returnValues;
+      console.log("from", from,);
       if (from === account)
         NotificationManager.success(
-          "Complimenti !! per il tuo staking hai ricevuto " +
-            amount +
+          "Complimenti !! Hai messo in Staking " +
+          (window.web3.utils.fromWei(amount, "ether")) +
             " USTDJ. BN: " +
             blockNumber
         );
       else
         NotificationManager.info(
-          "Qualcuno ha Stake " + amount + " neoToken. BN: " + blockNumber
+          "Qualcuno ha messo in Stake " + (window.web3.utils.fromWei(amount, "ether")) + " USDTJ. BN: " + blockNumber
         );
     });
     const eventUnStaked = IntermediaryInterface.UnStaked().on(
@@ -68,18 +69,18 @@ const Home = () => {
         if (from === account)
           NotificationManager.success(
             "Complimenti!! per il tuo staking hai ricevuto " +
-              amount +
+            (window.web3.utils.fromWei(amount, "ether")) + "USDTJ" +
               " piu un bonus di " +
-              reward +
+              (window.web3.utils.fromWei(reward, "ether")) +
               " USTDJ. BN: " +
               blockNumber
           );
         else
           NotificationManager.info(
-            "Qualcuno ha unSteke " +
-              amount +
+            "Qualcuno ha messo fatto unSteke " +
+            (window.web3.utils.fromWei(amount, "ether")) +
               " piu un bonus di " +
-              reward +
+              (window.web3.utils.fromWei(reward, "ether")) +
               " neoToken. BN: " +
               blockNumber
           );
